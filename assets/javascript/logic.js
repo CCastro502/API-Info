@@ -17,7 +17,9 @@ $("#search").on("click", function() {
 })
 
 // function that, once the user clicks a topic, asks the user to pick a type of information for that topic (gifs, omdb, or books), then calls on the appropriate function
-$(".ind-topic").on("click", function(event) {
+$("body").on("click", "button.ind-topic", function(event) {
+    var id = event.currentTarget.attributes.id.nodeValue;
+    id = parseInt(id);
+    console.log(id);
     var topicSelected = true;
-    console.log(event);
 })
