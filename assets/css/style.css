@@ -18,11 +18,24 @@ body {
 
 #searchArea {
     margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+}
+
+label {
+    font-size: 20px;
 }
 
 #termField {
     border-style: solid;
     border-color: dodgerblue;
+    margin: 0px 5px;
+}
+
+#search {
+    margin-left: 10px;
+    width: 20%;
 }
 
 #gifButton {
