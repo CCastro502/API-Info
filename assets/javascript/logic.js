@@ -27,8 +27,29 @@ function pickFormat(id1) {
     alert("You must select a format. Please press the gif, movie, or book button");
     $(".btn-block").on("click", function (event) {
         var id2 = event.currentTarget.attributes.id.value
-        console.log(id2);
-        
+        if (id2 === "gifButton") {
+            gifPull(id1);
+        } else if (id2 === "movieButton") {
+            moviePull(id1);
+        } else if (id2 === "bookButton") {
+            bookPull(id1);
+        } else {
+            $(".container").html("error");
+        }
     })
 }
 
+// Displays gifs for the user-selected topic
+function gifPull(id1) {
+    console.log("gif run")
+}
+
+// Displays movie info for the user-selected topic
+function moviePull(id1) {
+    console.log("movie run")
+}
+
+// Displays book info for the selected topic
+function bookPull(id1) {
+    console.log("book run")
+}
