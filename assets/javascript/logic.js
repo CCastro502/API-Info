@@ -14,7 +14,7 @@ listTopics(topic);
 
 // Function to grab user input, push it into the topic array, then call on listTopics function w/ new topic array
 $("#search").on("click", function () {
-    topic.push($("#termField").val());
+    topic.push($("#termField").val().trim());
     listTopics(topic);
     $("#termField").val("")
 })
@@ -101,6 +101,8 @@ function newsPull(id1) {
             $("#info-holder").append($("<h3>").attr("id", "title").text(shortHand[i].webTitle))
             $("#info-holder").append($("<p>").attr("id", "webPubDate").text("Web Publication Date: " + shortHand[i].webPublicationDate))
             $("#info-holder").append($("<a>").attr("href", "https://www.theguardian.com/tv-and-radio/2018/may/11/rick-and-morty-renewed-for-70-more-episodes-adult-swim").attr("id", "url").attr("target", "_blank").text("Link"))
+            $("#info-holder").append($("<br>"))
+            $("#info-holder").append($("<br>"))
         }
     })
 }
