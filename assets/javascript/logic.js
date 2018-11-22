@@ -19,6 +19,7 @@ $("#search").on("click", function () {
 // function that, once the user clicks a topic, asks the user to pick a type of information for that topic (gifs, omdb, or books), then calls on the appropriate function
 $("body").on("click", "button.ind-topic", function (event) {
     var id1 = (event.currentTarget.attributes.id.value).split("-")[1];
+    id1 = parseInt(id1);
     pickFormat(id1)
 })
 
@@ -41,7 +42,20 @@ function pickFormat(id1) {
 
 // Displays gifs for the user-selected topic
 function gifPull(id1) {
-    console.log("gif run")
+    var condensedTopic = topic[id1].split(' ').join('');
+    var url = "http://api.giphy.com/v1/gifs/search?apikey=Os7VxuMiC67XHgLFaBXLa2l83d03JI9D&q=" + condensedTopic + "&limit=9";
+    $.ajax({
+        url: url,
+        method: "GET",
+    }).then(function (result) {
+        $("#info-holder").html("");
+        var shortHand = result.data;
+        console.log(shortHand);
+        for (i=0;i<shortHand.length;i++) {
+            console.log(shortHand[i].embed_url)
+            $("#info-holder").append($("<img>").attr("src", shortHand[i].images.fixed_height.url))
+        }
+    })
 }
 
 // Displays movie info for the user-selected topic
