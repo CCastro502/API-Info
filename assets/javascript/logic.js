@@ -10,16 +10,25 @@ function listTopics(topic) {
 // Lists original topics
 listTopics(topic);
 // Function to grab user input, push it into the topic array, then call on listTopics function w/ new topic array
-$("#search").on("click", function() {
+$("#search").on("click", function () {
     topic.push($("#termField").val());
     listTopics(topic);
     $("#termField").val("")
 })
 
 // function that, once the user clicks a topic, asks the user to pick a type of information for that topic (gifs, omdb, or books), then calls on the appropriate function
-$("body").on("click", "button.ind-topic", function(event) {
-    var id = event.currentTarget.attributes.id.nodeValue;
-    id = parseInt(id);
-    console.log(id);
-    var topicSelected = true;
+$("body").on("click", "button.ind-topic", function (event) {
+    var id1 = (event.currentTarget.attributes.id.value).split("-")[1];
+    pickFormat(id1)
 })
+
+// function takes in the id from the topic button pushed, and waits until user picks a format to call the corresponding function which pulls api info
+function pickFormat(id1) {
+    alert("You must select a format. Please press the gif, movie, or book button");
+    $(".btn-block").on("click", function (event) {
+        var id2 = event.currentTarget.attributes.id.value
+        console.log(id2);
+        
+    })
+}
+
