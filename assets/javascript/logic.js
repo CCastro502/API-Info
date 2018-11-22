@@ -60,13 +60,15 @@ function gifPull(id1) {
 
 // Displays movie info for the user-selected topic
 function moviePull(id1) {
-    var condensedTopic = topic[id1].split(' ').join('');
-    var url = "http://www.omdbapi.com/?i=tt3896198&apikey=6b6720f9&t=" + condensedTopic;
+    // var condensedTopic = topic[id1].split(' ').join('');
+    var url = "http://www.omdbapi.com/?i=tt3896198&apikey=6b6720f9&t=" + topic[id1];
+    console.log(url);
     $.ajax({
         url: url,
         method: "GET",
     }).then(function (result) {
         $("#info-holder").html("");
+        $("#info-holder").append($("<img>").attr("src", result.Poster))
         $("#info-holder").append($("<h3>").attr("id", "movieTitle").text(result.Title))
         if (result.Director === "N/A") {
             $("#info-holder").append($("<p>").attr("id", "director").text("Director/Writers: " + result.Writer))
