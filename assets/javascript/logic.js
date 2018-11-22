@@ -43,7 +43,7 @@ function pickFormat(id1) {
 // Displays gifs for the user-selected topic
 function gifPull(id1) {
     var condensedTopic = topic[id1].split(' ').join('');
-    var url = "http://api.giphy.com/v1/gifs/search?apikey=Os7VxuMiC67XHgLFaBXLa2l83d03JI9D&q=" + condensedTopic + "&limit=9";
+    var url = "https://api.giphy.com/v1/gifs/search?apikey=Os7VxuMiC67XHgLFaBXLa2l83d03JI9D&q=" + condensedTopic + "&limit=9";
     $.ajax({
         url: url,
         method: "GET",
@@ -60,7 +60,24 @@ function gifPull(id1) {
 
 // Displays movie info for the user-selected topic
 function moviePull(id1) {
-    console.log("movie run")
+    var condensedTopic = topic[id1].split(' ').join('');
+    var url = "http://www.omdbapi.com/?i=tt3896198&apikey=6b6720f9&t=" + condensedTopic;
+    $.ajax({
+        url: url,
+        method: "GET",
+    }).then(function (result) {
+        $("#info-holder").html("");
+        $("#info-holder").append($("<h3>").attr("id", "movieTitle").text(result.Title))
+        if (result.Director === "N/A") {
+            $("#info-holder").append($("<p>").attr("id", "director").text("Director/Writers: " + result.Writer))
+        } else {
+            $("#info-holder").append($("<p>").attr("id", "director").text("Director/Writers: " + result.Director))
+        }
+        $("#info-holder").append($("<p>").attr("id", "rated").text("Rated: " + result.Rated))
+        $("#info-holder").append($("<p>").attr("id", "rating").text("imdb Rating: " + result.imdbRating))
+        $("#info-holder").append($("<p>").attr("id", "plot").text("Plot: " + result.Plot))
+        console.log(result);
+    })
 }
 
 // Displays book info for the selected topic
