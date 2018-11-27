@@ -1,6 +1,7 @@
 body {
     background-image: url("../background.png");
     background-size: 100%;
+    letter-spacing: 150%;
 }
 
 .container {
@@ -8,7 +9,9 @@ body {
 }
 
 .btn-outline-primary {
-    margin: 25px 10px 10px 0px;;
+    margin: 25px 10px 10px 0px;
+    border-color: darkblue;
+    color: blue;
 }
 
 #topic-holder {
@@ -36,6 +39,7 @@ label {
 #search {
     margin-left: 10px;
     width: 20%;
+    background: ghostwhite;
 }
 
 #gifButton {

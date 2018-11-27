@@ -55,9 +55,17 @@ function gifPull(id1) {
         var shortHand = result.data;
         console.log(shortHand);
         for (i = 0; i < shortHand.length; i++) {
-            console.log(shortHand[i].embed_url)
-            $("#info-holder").append($("<img>").attr("src", shortHand[i].images.fixed_height.url))
+            $("#info-holder").append($("<img>").addClass("still").attr("src", shortHand[i].images.fixed_height_still.url).attr("id", "pic-" + i))
         }
+        $(".still").on("click", function (event) {
+            var y = this.id.split('-')[1]
+            console.log(this.src);
+            if (this.src == shortHand[y].images.fixed_height_still.url) {
+                this.src = shortHand[y].images.fixed_height.url
+            } else {
+                this.src = shortHand[y].images.fixed_height_still.url
+            }
+        })
     })
 }
 
@@ -65,7 +73,6 @@ function gifPull(id1) {
 function moviePull(id1) {
     // var condensedTopic = topic[id1].split(' ').join('');
     var url = "http://www.omdbapi.com/?i=tt3896198&apikey=6b6720f9&t=" + topic[id1];
-    console.log(url);
     $.ajax({
         url: url,
         method: "GET",
@@ -81,7 +88,6 @@ function moviePull(id1) {
         $("#info-holder").append($("<p>").attr("id", "rated").text("Rated: " + result.Rated))
         $("#info-holder").append($("<p>").attr("id", "rating").text("imdb Rating: " + result.imdbRating))
         $("#info-holder").append($("<p>").attr("id", "plot").text("Plot: " + result.Plot))
-        console.log(result);
     })
 }
 
@@ -89,14 +95,12 @@ function moviePull(id1) {
 function newsPull(id1) {
     var condensedTopic = topic[id1].split('').join('').toLowerCase();
     var url = "https://content.guardianapis.com/search?api-key=1e735112-157f-4f28-8980-fb5bdade6370&q=" + condensedTopic;
-    console.log(url);
     $.ajax({
         url: url,
         method: "GET",
     }).then(function (result) {
         $("#info-holder").html("");
         var shortHand = result.response.results
-        console.log(shortHand);
         for (i = 0; i < 5; i++) {
             $("#info-holder").append($("<h3>").attr("id", "title").text(shortHand[i].webTitle))
             $("#info-holder").append($("<p>").attr("id", "webPubDate").text("Web Publication Date: " + shortHand[i].webPublicationDate))
